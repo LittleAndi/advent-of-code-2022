@@ -1,5 +1,8 @@
 using Xunit;
 using Shouldly;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace day02tests;
 
 public class UnitTest1
@@ -20,9 +23,28 @@ public class UnitTest1
     [InlineData('A', 'Z', 3 + 0)]
     [InlineData('B', 'X', 1 + 0)]
     [InlineData('C', 'Y', 2 + 0)]
-    public void Test1(char opponent, char me, int score)
+    public void TestPart1(char opponent, char me, int expectedScore)
     {
         var round = new RockPaperScissorsRound(opponent, me);
-        round.MyScore.ShouldBe(score);
+        round.MyScore.ShouldBe(expectedScore);
+    }
+
+    [Theory]
+    [InlineData('A', 'Y', 1 + 3)]
+    [InlineData('B', 'X', 1 + 0)]
+    [InlineData('C', 'Z', 1 + 6)]
+    public void TestPart2(char opponent, char ending, int expectedScore)
+    {
+        var round = new RockPaperScissorsRoundWithEnding(opponent, ending);
+        round.MyScore.ShouldBe(expectedScore);
+    }
+    [Fact]
+    public void TestPart2Sum()
+    {
+        var rounds = new List<RockPaperScissorsRoundWithEnding>();
+        rounds.Add(new RockPaperScissorsRoundWithEnding('A', 'Y'));
+        rounds.Add(new RockPaperScissorsRoundWithEnding('B', 'X'));
+        rounds.Add(new RockPaperScissorsRoundWithEnding('C', 'Z'));
+        rounds.Sum(r => r.MyScore).ShouldBe(12);
     }
 }
