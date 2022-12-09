@@ -49,77 +49,52 @@ public class Rope
             case 'U':
                 for (int i = 0; i < distance; i++)
                 {
-                    Knots[0] = Knots[0].Up;
-                    for (int knot = 1; knot < Knots.Count; knot++)
-                    {
-                        if (!Knots[knot].IsOnOrNextTo(Knots[knot - 1]))
-                        {
-                            (var dX, var dY) = Knots[knot - 1].Distance(Knots[knot]);
-                            if (Math.Sign(dY) == -1) Knots[knot] = Knots[knot].Up;
-                            if (Math.Sign(dX) == -1) Knots[knot] = Knots[knot].Left;
-                            if (Math.Sign(dY) == 1) Knots[knot] = Knots[knot].Down;
-                            if (Math.Sign(dX) == 1) Knots[knot] = Knots[knot].Right;
-                        }
-                    }
+                    Knots[0] = Knots[0].Up; // Head
+                    MoveKnots();
                     tailPositions.Add(Knots.Last());
                 }
                 break;
             case 'L':
                 for (int i = 0; i < distance; i++)
                 {
-                    Knots[0] = Knots[0].Left;
-                    for (int knot = 1; knot < Knots.Count; knot++)
-                    {
-                        if (!Knots[knot].IsOnOrNextTo(Knots[knot - 1]))
-                        {
-                            (var dX, var dY) = Knots[knot - 1].Distance(Knots[knot]);
-                            if (Math.Sign(dY) == -1) Knots[knot] = Knots[knot].Up;
-                            if (Math.Sign(dX) == -1) Knots[knot] = Knots[knot].Left;
-                            if (Math.Sign(dY) == 1) Knots[knot] = Knots[knot].Down;
-                            if (Math.Sign(dX) == 1) Knots[knot] = Knots[knot].Right;
-                        }
-                    }
+                    Knots[0] = Knots[0].Left; // Head
+                    MoveKnots();
                     tailPositions.Add(Knots.Last());
                 }
                 break;
             case 'D':
                 for (int i = 0; i < distance; i++)
                 {
-                    Knots[0] = Knots[0].Down;
-                    for (int knot = 1; knot < Knots.Count; knot++)
-                    {
-                        if (!Knots[knot].IsOnOrNextTo(Knots[knot - 1]))
-                        {
-                            (var dX, var dY) = Knots[knot - 1].Distance(Knots[knot]);
-                            if (Math.Sign(dY) == -1) Knots[knot] = Knots[knot].Up;
-                            if (Math.Sign(dX) == -1) Knots[knot] = Knots[knot].Left;
-                            if (Math.Sign(dY) == 1) Knots[knot] = Knots[knot].Down;
-                            if (Math.Sign(dX) == 1) Knots[knot] = Knots[knot].Right;
-                        }
-                    }
+                    Knots[0] = Knots[0].Down; // Head
+                    MoveKnots();
                     tailPositions.Add(Knots.Last());
                 }
                 break;
             case 'R':
                 for (int i = 0; i < distance; i++)
                 {
-                    Knots[0] = Knots[0].Right;
-                    for (int knot = 1; knot < Knots.Count; knot++)
-                    {
-                        if (!Knots[knot].IsOnOrNextTo(Knots[knot - 1]))
-                        {
-                            (var dX, var dY) = Knots[knot - 1].Distance(Knots[knot]);
-                            if (Math.Sign(dY) == -1) Knots[knot] = Knots[knot].Up;
-                            if (Math.Sign(dX) == -1) Knots[knot] = Knots[knot].Left;
-                            if (Math.Sign(dY) == 1) Knots[knot] = Knots[knot].Down;
-                            if (Math.Sign(dX) == 1) Knots[knot] = Knots[knot].Right;
-                        }
-                    }
+                    Knots[0] = Knots[0].Right; // Head
+                    MoveKnots();
                     tailPositions.Add(Knots.Last());
                 }
                 break;
         }
         return tailPositions;
+    }
+
+    private void MoveKnots()
+    {
+        for (int knot = 1; knot < Knots.Count; knot++)
+        {
+            if (!Knots[knot].IsOnOrNextTo(Knots[knot - 1]))
+            {
+                (var dX, var dY) = Knots[knot - 1].Distance(Knots[knot]);
+                if (Math.Sign(dY) == -1) Knots[knot] = Knots[knot].Up;
+                if (Math.Sign(dX) == -1) Knots[knot] = Knots[knot].Left;
+                if (Math.Sign(dY) == 1) Knots[knot] = Knots[knot].Down;
+                if (Math.Sign(dX) == 1) Knots[knot] = Knots[knot].Right;
+            }
+        }
     }
 }
 public struct Point
