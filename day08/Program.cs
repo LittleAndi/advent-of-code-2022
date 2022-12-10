@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-var treeMapInfo = File.ReadAllLines("input.txt")
+﻿var treeMapInfo = File.ReadAllLines("input.txt")
     .Where(l => !string.IsNullOrWhiteSpace(l))
     .Select(l => l.ToCharArray())
     .ToArray();
@@ -13,9 +11,7 @@ System.Console.WriteLine(treeMap.BestScenicScore);
 public class TreeMap
 {
     int[,] treeMap;
-    int xMin = 0;
     int xSize;
-    int yMin = 0;
     int ySize;
     public TreeMap(char[][] mapInput)
     {
