@@ -57,10 +57,10 @@ public class HeightMap
         // Look around (we should have not been there before)
         // Find next if higher or same
         var directionLengths = new List<int>();
-        if (!path.Contains(p.Up) && !IsOutOfBounds(p.Up) && heightMap[p.Up.X, p.Up.Y] >= heightMap[p.X, p.Y]) directionLengths.Add(Find(p.Up, path));
-        if (!path.Contains(p.Left) && !IsOutOfBounds(p.Left) && heightMap[p.Left.X, p.Left.Y] >= heightMap[p.X, p.Y]) directionLengths.Add(Find(p.Left, path));
-        if (!path.Contains(p.Down) && !IsOutOfBounds(p.Down) && heightMap[p.Down.X, p.Down.Y] >= heightMap[p.X, p.Y]) directionLengths.Add(Find(p.Down, path));
-        if (!path.Contains(p.Right) && !IsOutOfBounds(p.Right) && heightMap[p.Right.X, p.Right.Y] >= heightMap[p.X, p.Y]) directionLengths.Add(Find(p.Right, path));
+        if (!path.Contains(p.Up) && !IsOutOfBounds(p.Up) && heightMap[p.Up.X, p.Up.Y] >= heightMap[p.X, p.Y]) directionLengths.Add(Find(p.Up, new List<Point>(path)));
+        if (!path.Contains(p.Left) && !IsOutOfBounds(p.Left) && heightMap[p.Left.X, p.Left.Y] >= heightMap[p.X, p.Y]) directionLengths.Add(Find(p.Left, new List<Point>(path)));
+        if (!path.Contains(p.Down) && !IsOutOfBounds(p.Down) && heightMap[p.Down.X, p.Down.Y] >= heightMap[p.X, p.Y]) directionLengths.Add(Find(p.Down, new List<Point>(path)));
+        if (!path.Contains(p.Right) && !IsOutOfBounds(p.Right) && heightMap[p.Right.X, p.Right.Y] >= heightMap[p.X, p.Y]) directionLengths.Add(Find(p.Right, new List<Point>(path)));
 
         if (directionLengths.Count == 0)
         {
