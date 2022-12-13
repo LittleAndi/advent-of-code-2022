@@ -55,10 +55,10 @@ public class HeightMap
         if (heightMap[p.X, p.Y].Equals('E')) return (true, new List<Point>());
 
         // Return if next to end
-        if (heightMap[p.X, p.Y].Equals('z') && heightMap[p.Up.X, p.Up.Y].Equals('E')) return (true, new List<Point>());
-        if (heightMap[p.X, p.Y].Equals('z') && heightMap[p.Left.X, p.Left.Y].Equals('E')) return (true, new List<Point>());
-        if (heightMap[p.X, p.Y].Equals('z') && heightMap[p.Down.X, p.Down.Y].Equals('E')) return (true, new List<Point>());
-        if (heightMap[p.X, p.Y].Equals('z') && heightMap[p.Right.X, p.Right.Y].Equals('E')) return (true, new List<Point>());
+        if (heightMap[p.X, p.Y].Equals('z') && heightMap[p.Up.X, p.Up.Y].Equals('E')) return (true, new List<Point>() { p.Up });
+        if (heightMap[p.X, p.Y].Equals('z') && heightMap[p.Left.X, p.Left.Y].Equals('E')) return (true, new List<Point>() { p.Left });
+        if (heightMap[p.X, p.Y].Equals('z') && heightMap[p.Down.X, p.Down.Y].Equals('E')) return (true, new List<Point>() { p.Down });
+        if (heightMap[p.X, p.Y].Equals('z') && heightMap[p.Right.X, p.Right.Y].Equals('E')) return (true, new List<Point>() { p.Right });
 
         // Look around (we should have not been there before)
         // Find next if higher or same
